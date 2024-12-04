@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: FinalExam
+  datasource:
+    url: jdbc:postgresql://${DATABASE_DOMAIN:localhost}:${DATABASE_PORT:5432}/${DATABASE_NAME:final-exam}
+    username: ${DATABASE_USERNAME:user}
+    password: ${DATABASE_PASSWORD:123}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    generate-ddl: true
+    defer-datasource-initialization: true
+    show-sql: true
+  sql:
+    init:
+      mode: always
+
+application:
+  security:
+    jwt:
+      secret-key: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+      expiration: 86400000
+      refresh-token:
+        expiration: 604800000
+
+server:
+  servlet:
+    context-path: '/api/'
+  error:
+    include-message: always
+  port: ${PORT:8080}
+  address: 0.0.0.0
