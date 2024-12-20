@@ -1,6 +1,7 @@
 package com.example.finalExam.config;
 
 import com.example.finalExam.repositories.UserRepository;
+import com.example.finalExam.security.UserPrincipal;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,6 +24,7 @@ public class SecurityBeansConfig {
     @Bean
     public UserDetailsService userDetailsService() {
         return username -> (UserDetails) repository.findUserByEmail(username)
+                .map(UserPrincipal::new)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
