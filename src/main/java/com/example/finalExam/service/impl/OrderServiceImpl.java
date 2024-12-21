@@ -87,13 +87,13 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<OrderResponseDto> getAllOrders() {
-        List<Order> orders = orderRepository.findAll();
+    public List<OrderResponseDto> getOrdersByUserId(Long userId) {
+        List<Order> orders = orderRepository.findAllByUserId(userId);
 
         return orders.stream()
                 .flatMap(order -> order.getOrderItems().stream()
                         .map(orderItem -> new OrderResponseDto(
-                                orderItem.getId(),
+                                orderItem.getId(), // ID OrderItem
                                 orderItem.getProduct().getName(),
                                 order.getStatus(),
                                 orderItem.getQuantity(),
@@ -102,6 +102,7 @@ public class OrderServiceImpl implements OrderService {
                 )
                 .toList();
     }
+
 
 
 

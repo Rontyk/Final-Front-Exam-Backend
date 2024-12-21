@@ -9,5 +9,5 @@ public interface OrderService {
 
     void createOrderFromWishlist(Long userId, List<WishlistRequestDto> requestDtos);
 
-    List<OrderResponseDto> getAllOrders();
+    List<OrderResponseDto> getOrdersByUserId(Long id);
 }
