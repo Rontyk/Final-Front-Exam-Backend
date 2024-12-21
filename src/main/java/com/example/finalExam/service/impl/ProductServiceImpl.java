@@ -51,7 +51,7 @@ public class ProductServiceImpl implements ProductService {
                     .collect(Collectors.toList());
         }
 
-        if (productRequestDto.getSearch() != null && !productRequestDto.getSearch().isEmpty()) {
+        if (productRequestDto.getSearch() != null && !productRequestDto.getSearch().isEmpty() && !productRequestDto.getSearch().equals("null")) {
             String search = productRequestDto.getSearch().toLowerCase();
             products = products.stream()
                     .filter(product -> product.getName().toLowerCase().contains(search) ||
