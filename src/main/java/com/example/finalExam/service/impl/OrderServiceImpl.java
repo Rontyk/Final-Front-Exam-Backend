@@ -1,6 +1,7 @@
 package com.example.finalExam.service.impl;
 
 import com.example.finalExam.dto.request.WishlistRequestDto;
+import com.example.finalExam.dto.response.OrderResponseDto;
 import com.example.finalExam.entities.Order;
 import com.example.finalExam.entities.OrderItem;
 import com.example.finalExam.entities.Product;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -83,5 +85,24 @@ public class OrderServiceImpl implements OrderService {
         log.info("User id: {}", userId);
         wishlistRepository.deleteByUser(userRepository.findById(userId).orElseThrow(() -> new DbNotFoundException(HttpStatus.NOT_FOUND.getReasonPhrase(), "User do not found")));
     }
+
+    @Override
+    public List<OrderResponseDto> getAllOrders() {
+        List<Order> orders = orderRepository.findAll();
+
+        return orders.stream()
+                .flatMap(order -> order.getOrderItems().stream()
+                        .map(orderItem -> new OrderResponseDto(
+                                orderItem.getId(),
+                                orderItem.getProduct().getName(),
+                                order.getStatus(),
+                                orderItem.getQuantity(),
+                                orderItem.getPrice().multiply(BigDecimal.valueOf(orderItem.getQuantity()))
+                        ))
+                )
+                .toList();
+    }
+
+
 
 }
