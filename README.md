@@ -151,17 +151,3 @@ This project is a backend API for an e-commerce application. It provides functio
 ]
 ```
 
----
-
-## **Improvements and Future Features**
-
-- Add support for payment integration.
-- Implement product search and filtering.
-- Add support for admin dashboard to manage products and orders.
-- Enhance error handling and validation.
-
----
-
-## **License**
-This project is licensed under the MIT License. See the LICENSE file for details.
-
