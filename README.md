@@ -46,9 +46,9 @@ This project is a backend API for an e-commerce application. It provides functio
 
 ### **Prerequisites**
 
-- Java 17 installed.
+- Java 21 installed.
 - PostgreSQL database.
-- Maven installed.
+- Gradle installed.
 
 ### **Installation**
 
@@ -61,20 +61,11 @@ This project is a backend API for an e-commerce application. It provides functio
 2. Configure the database:
    - Update `application.properties` with your PostgreSQL credentials.
    ```properties
-   spring.datasource.url=jdbc:postgresql://localhost:5432/e_commerce_db
-   spring.datasource.username=your_username
-   spring.datasource.password=your_password
+   spring.datasource.url=jdbc:postgresql://localhost:5432/final-exam
+   spring.datasource.username=user
+   spring.datasource.password=123
    ```
 
-3. Build the project:
-   ```bash
-   mvn clean install
-   ```
-
-4. Run the application:
-   ```bash
-   mvn spring-boot:run
-   ```
 
 ### **Database Initialization**
 
@@ -106,8 +97,7 @@ This project is a backend API for an e-commerce application. It provides functio
 
 ### **Reviews**
 
-- **POST** `/products/{id}/reviews`: Add a review to a product.
-- **GET** `/products/{id}/reviews`: View reviews of a product.
+- **GET** `/products/{id}`: View reviews of a product.
 
 ---
 
