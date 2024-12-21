@@ -1,4 +1,4 @@
-# E-Commerce Backend API
+# Front Final Backend API
 
 This project is a backend API for an e-commerce application. It provides functionality for user management, product browsing, orders, wishlist management, and reviews.
 
