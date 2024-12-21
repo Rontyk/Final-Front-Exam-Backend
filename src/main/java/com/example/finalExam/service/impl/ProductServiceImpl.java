@@ -1,12 +1,15 @@
 package com.example.finalExam.service.impl;
 
 import com.example.finalExam.dto.request.ProductRequestDto;
+import com.example.finalExam.dto.response.ProductByIdResponseDto;
 import com.example.finalExam.dto.response.ProductResponseDto;
 import com.example.finalExam.entities.Category;
 import com.example.finalExam.entities.Product;
+import com.example.finalExam.entities.Review;
 import com.example.finalExam.exception.DbNotFoundException;
 import com.example.finalExam.repositories.CategoryRepository;
 import com.example.finalExam.repositories.ProductRepository;
+import com.example.finalExam.repositories.ReviewRepository;
 import com.example.finalExam.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,6 +26,7 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
+    private final ReviewRepository reviewRepository;
 
     @Override
     public List<ProductResponseDto> getProductsByFilters(ProductRequestDto productRequestDto) {
@@ -69,4 +73,31 @@ public class ProductServiceImpl implements ProductService {
                 ))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public ProductByIdResponseDto getProductById(Long id) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Product not found with id: " + id));
+
+        List<Review> reviews = reviewRepository.findAllByProductId(id);
+
+        Integer avgRating = reviews.isEmpty() ? null :
+                (int) Math.round(reviews.stream()
+                        .mapToInt(Review::getRating)
+                        .average()
+                        .orElse(0));
+
+        String firstComment = reviews.isEmpty() ? null : reviews.get(0).getComment();
+
+        return new ProductByIdResponseDto(
+                product.getName(),
+                product.getPrice(),
+                product.getDescription(),
+                product.getStock(),
+                firstComment,
+                reviews.isEmpty() ? null : reviews.get(0).getRating(),
+                avgRating
+        );
+    }
+
 }

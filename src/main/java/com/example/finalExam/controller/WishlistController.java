@@ -43,7 +43,7 @@ public class WishlistController {
     public ResponseEntity<Void> convertWishlistToOrder(@RequestBody List<WishlistRequestDto> requestDtos) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null || !(authentication.getPrincipal() instanceof UserPrincipal)) {
-            throw new IllegalStateException("User not authenticated");
+            throw new IllegalStateException("User does not authenticated");
         }
 
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
