@@ -7,7 +7,7 @@ import com.example.finalExam.entities.Token;
 import com.example.finalExam.entities.User;
 import com.example.finalExam.entities.enums.Role;
 import com.example.finalExam.entities.enums.TokenType;
-import com.example.finalExam.exception.DbRowNotFoundException;
+import com.example.finalExam.exception.DbNotFoundException;
 import com.example.finalExam.repositories.TokenRepository;
 import com.example.finalExam.repositories.UserRepository;
 import com.example.finalExam.security.JwtService;
@@ -62,7 +62,7 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public AuthResponseDto authenticateUser(AuthRequestDto authRequest) {
         User user = userRepository.findUserByEmail(authRequest.getEmail())
-                .orElseThrow(() -> new DbRowNotFoundException(HttpStatus.BAD_REQUEST.getReasonPhrase(), "User doesn't exist"));
+                .orElseThrow(() -> new DbNotFoundException(HttpStatus.BAD_REQUEST.getReasonPhrase(), "User doesn't exist"));
 
         if(!passwordEncoder.matches(authRequest.getPassword(), user.getPassword())){
             throw new IllegalArgumentException("Passwords do not match");
@@ -123,7 +123,7 @@ public class AuthServiceImpl implements AuthService {
         if (userEmail != null) {
 
             var user = userRepository.findUserByEmail(userEmail)
-                    .orElseThrow(() -> new DbRowNotFoundException(HttpStatus.BAD_REQUEST.getReasonPhrase(), "Token is invalid"));
+                    .orElseThrow(() -> new DbNotFoundException(HttpStatus.BAD_REQUEST.getReasonPhrase(), "Token is invalid"));
 
             UserDetails userDetails = new UserPrincipal(user);
 

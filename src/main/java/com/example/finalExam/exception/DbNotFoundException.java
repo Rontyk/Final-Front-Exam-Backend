@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class DbRowNotFoundException extends RuntimeException {
+public class DbNotFoundException extends RuntimeException {
     private String error;
     private String message;
 

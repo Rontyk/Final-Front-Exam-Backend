@@ -17,6 +17,7 @@ public class CategoriesResponseDto {
     @Data
     @AllArgsConstructor
     public static class SubCategory{
+        private Long subCategoryId;
         private String name;
     }
 }

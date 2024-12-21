@@ -33,7 +33,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     private List<CategoriesResponseDto.SubCategory> mapSubCategories(List<Category> subcategories) {
         return subcategories.stream()
-                .map(subCategory -> new CategoriesResponseDto.SubCategory(subCategory.getName()))
+                .map(subCategory -> new CategoriesResponseDto.SubCategory(subCategory.getId(), subCategory.getName()))
                 .toList();
     }
 

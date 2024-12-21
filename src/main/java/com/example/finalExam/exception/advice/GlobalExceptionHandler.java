@@ -2,7 +2,7 @@ package com.example.finalExam.exception.advice;
 
 
 import com.example.finalExam.dto.response.ErrorResponseDto;
-import com.example.finalExam.exception.DbRowNotFoundException;
+import com.example.finalExam.exception.DbNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +18,8 @@ import java.util.Arrays;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(DbRowNotFoundException.class)
-    public ResponseEntity<ErrorResponseDto> handlePositionNotFoundException(DbRowNotFoundException ex) {
+    @ExceptionHandler(DbNotFoundException.class)
+    public ResponseEntity<ErrorResponseDto> handlePositionNotFoundException(DbNotFoundException ex) {
         log.error("DbRowNotFoundException exception: ", ex);
         ErrorResponseDto errorResponse = new ErrorResponseDto(ex.getError(), ex.getMessage(), getStackTrace(ex));
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
