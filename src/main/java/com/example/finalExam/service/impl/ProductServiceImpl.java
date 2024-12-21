@@ -61,6 +61,7 @@ public class ProductServiceImpl implements ProductService {
 
         return products.stream()
                 .map(product -> new ProductResponseDto(
+                        product.getId(),
                         product.getName(),
                         product.getPrice(),
                         product.getDescription(),

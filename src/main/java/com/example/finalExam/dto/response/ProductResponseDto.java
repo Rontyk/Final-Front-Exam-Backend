@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Data
 public class ProductResponseDto {
+    private Long id;
     private String name;
     private BigDecimal price;
     private String description;

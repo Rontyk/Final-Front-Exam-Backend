@@ -46,6 +46,7 @@ public class WishlistServiceImpl implements WishlistService {
                 .map(wishList -> {
                     Product product = wishList.getProduct();
                     return new ProductForWishListResponseDto(
+                            product.getId(),
                             product.getName(),
                             product.getPrice(),
                             product.getStock()
