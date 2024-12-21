@@ -6,14 +6,14 @@ This project is a backend API for an e-commerce application. It provides functio
 
 ## **Technologies Used**
 
-- **Java 17**: Programming language.
+- **Java 21**: Programming language.
 - **Spring Boot**: Framework for application development.
 - **Spring Security**: For authentication and authorization.
 - **JWT**: For secure token-based authentication.
 - **Hibernate/JPA**: For database interactions.
 - **PostgreSQL**: Database.
 - **Lombok**: To reduce boilerplate code.
-- **Maven**: Build tool.
+- **Gradle**: Build tool.
 
 ---
 
@@ -54,8 +54,8 @@ This project is a backend API for an e-commerce application. It provides functio
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/<your-repo>/e-commerce-backend.git
-   cd e-commerce-backend
+   git clone https://github.com/Rontyk/Final-Front-Exam-Backend.git
+   cd Final-Front-Exam-Backend
    ```
 
 2. Configure the database:
