@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface WishlistService {
     List<ProductForWishListResponseDto> findWishList();
+
+    void deleteByProductId(Long id);
 }

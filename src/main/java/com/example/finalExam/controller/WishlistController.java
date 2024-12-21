@@ -6,9 +6,7 @@ import com.example.finalExam.service.WishlistService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,5 +20,11 @@ public class WishlistController {
     @GetMapping
     public ResponseEntity<List<ProductForWishListResponseDto>> getWishList(){
         return ResponseEntity.ok(wishlistService.findWishList());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteWishlist(@PathVariable Long id){
+        wishlistService.deleteByProductId(id);
+        return ResponseEntity.status(200).build();
     }
 }

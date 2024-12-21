@@ -54,4 +54,14 @@ public class WishlistServiceImpl implements WishlistService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public void deleteByProductId(Long id) {
+        User currentUser = getCurrentUser();
+
+        Wishlist wishList = wishListRepository.findByUserAndProductId(currentUser, id)
+                .orElseThrow(() -> new RuntimeException("Wishlist item not found for product ID: " + id));
+
+        wishListRepository.delete(wishList);
+    }
+
 }
